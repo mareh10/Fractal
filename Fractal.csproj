@@ -58,6 +58,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Interval.cs" />
+    <Compile Include="Line.cs" />
     <Compile Include="PolygonalChain.cs" />
     <Compile Include="Segment.cs" />
     <Page Include="MainWindow.xaml">

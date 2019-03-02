@@ -10,14 +10,16 @@ namespace Fractal
     {
         public static void Main(string[] args)
         {
-            Segment[] s = {
-                new Segment(new Point(0, 0), new Point(1, 1)),
-                new Segment(new Point(1, 1), new Point(3, 0)),
-                new Segment(new Point(3, 0), new Point(4, 5))
+            Point[] p =
+            {
+                new Point(0, 0),
+                new Point(1, 1),
+                new Point(3, 0),
+                new Point(4, 5)
             };
 
-            var PC = new PolygonalChain(s);
-            Console.WriteLine(PC.ToString(0.5));
+            var PC = new PolygonalChain(p, 0.5);
+            Console.WriteLine(PC.ToString());
         }
     }
 }

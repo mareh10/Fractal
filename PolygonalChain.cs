@@ -6,35 +6,23 @@ using System.Threading.Tasks;
 
 namespace Fractal
 {
-    public class PolygonalChain
+    public class PolygonalChain : Line
     {
         public readonly LinkedList<Segment> chain = new LinkedList<Segment>();
 
-        public PolygonalChain(Segment[] segments)
+        public PolygonalChain(Point[] nodes, double period = 0.01)
         {
-            chain.AddFirst(segments[0]);
-            for (int i = 1; i < segments.Length; i++)
-            {
-                if (chain.Last.Value.end.Equals(segments[i].start))
-                    chain.AddLast(segments[i]);
-                else throw new ArgumentException("Wrong sequence of Segments");
-            }
-        }
+            chain.AddFirst(new Segment(nodes[0], nodes[1]));
 
-        public Point[] ToPointArray(double period)
-        {
-            return chain.
+            for (int i = 1; i < nodes.Length - 1; i++)
+            {
+                chain.AddLast(new Segment(nodes[i], nodes[i + 1]));
+            }
+            points = chain.
                 Select(c => c.ToPointArray(period)).
                 SelectMany(s => s).
-                ToArray();
-        }
-
-        public string ToString(double period)
-        {
-            var sb = new StringBuilder();
-            foreach (var p in this.ToPointArray(period))
-                sb.Append(p.ToString() + ' ');
-            return sb.ToString();
+                Distinct().
+                ToList();
         }
     }
 }
