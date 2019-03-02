@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fractal
 {
-    public class Segment
+    public class Segment : Line
     {
         public readonly Point start;
         public readonly Point end;
@@ -15,18 +15,19 @@ namespace Fractal
         {
             this.start = start;
             this.end = end;
+            points = this.ToPointList();
         }
 
-        public Point[] ToPointArray(double period)
+        public List<Point> ToPointList()
         {
             var lst = new List<Point>();
-            double prop = end.Y - start.Y / end.X - start.X;
+            double prop = (end.Y - start.Y) / (end.X - start.X);
             //debug here
-            for (double i = start.X; i <= end.X; i += period)
+            for (double i = 0; i <= end.X - start.X; i += Geometry.period)
             {               
-                lst.Add(new Point(i, (i * prop) + start.Y));
+                lst.Add(new Point(i + start.X, (i * prop) + start.Y));
             }
-            return lst.ToArray();
+            return lst;
         }
     }
 }

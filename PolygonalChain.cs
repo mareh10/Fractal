@@ -10,7 +10,7 @@ namespace Fractal
     {
         public readonly LinkedList<Segment> chain = new LinkedList<Segment>();
 
-        public PolygonalChain(Point[] nodes, double period = 0.01)
+        public PolygonalChain(Point[] nodes)
         {
             chain.AddFirst(new Segment(nodes[0], nodes[1]));
 
@@ -19,7 +19,7 @@ namespace Fractal
                 chain.AddLast(new Segment(nodes[i], nodes[i + 1]));
             }
             points = chain.
-                Select(c => c.ToPointArray(period)).
+                Select(c => c.ToPointList()).
                 SelectMany(s => s).
                 Distinct().
                 ToList();

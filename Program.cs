@@ -18,7 +18,7 @@ namespace Fractal
                 new Point(4, 5)
             };
 
-            var PC = new PolygonalChain(p, 0.5);
+            var PC = new PolygonalChain(p);
             Console.WriteLine(PC.ToString());
         }
     }

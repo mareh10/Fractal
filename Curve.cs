@@ -10,17 +10,14 @@ namespace Fractal
 
     public class Curve : Line
     {
-        public Curve(Interval interval, CurveFunction f, double period = 0.01)
+        public readonly CurveFunction curveFunction;
+        public Curve(Interval interval, CurveFunction f)
         {
-            for (double x = interval.start; x <= interval.end; x += period)
+            for (double x = interval.start; x <= interval.end; x += Geometry.period)
             {
-                points.Add(new Point(x, f(x)) );
+                points.Add(new Point(x, f(x)));
+                curveFunction = f;
             }
-        }
-
-        public Curve(double start, double end, Segment[] segments, double interval = 0.01)
-        {
-
         }
 
         //public Point PointAt(double x)

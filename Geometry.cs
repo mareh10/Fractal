@@ -8,6 +8,6 @@ namespace Fractal
 {
     static class Geometry
     {
-
+        public const double period = 0.5;
     }
 }

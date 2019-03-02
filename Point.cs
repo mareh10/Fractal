@@ -31,5 +31,10 @@ namespace Fractal
         {
             return (obj as Point).X == X && (obj as Point).Y == Y;
         }
+
+        public override int GetHashCode()
+        {
+            return X.GetHashCode() + Y.GetHashCode();
+        }
     }
 }
